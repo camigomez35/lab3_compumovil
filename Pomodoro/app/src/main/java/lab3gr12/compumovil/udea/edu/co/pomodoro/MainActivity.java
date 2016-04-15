@@ -31,16 +31,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
-implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener{
+        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     public static String TIEMPO = "tiempo";
     public static String TIPO = "tipo";
     public static int TIPO_DESCANSO = 0;
     public static int TIPO_TRABAJO = 1;
-    public static int TIPO_ACTUAL;
-    public static long tiempoActual;
+    public static int TIPO_ACTUAL = TIPO_TRABAJO;
+    public static long tiempoActual = 0;
     private Intent intentPomodoro;
-    int tiempo = 30000;
+    long tiempo = 30000;
     public BroadcastReceiver receiver;
     private TextView tvTiempo;
     private SeekBar sbVolumen, sbDescanso, sbTrabajo;
@@ -68,18 +68,16 @@ implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener
         btPause = (Button) findViewById(R.id.bt_stop);
         btPause.setOnClickListener(this);
         btPlay.setOnClickListener(this);
-        tvTiempo = (TextView)findViewById(R.id.tv_tiempo);
-         //Iniciar servicio
+        tvTiempo = (TextView) findViewById(R.id.tv_tiempo);
+        //Iniciar servicio
         receiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                Log.e("receive", "intent");
+
                 Bundle bunble = intent.getExtras();
                 tiempoActual = bunble.getLong(MainActivity.TIEMPO);
                 String s = Utilities.milliToString(bunble.getLong(MainActivity.TIEMPO));
-                Log.e("receiveT",s);
-                if(tvTiempo != null){
-                    Log.e("receiveView",s);
+                if (tvTiempo != null) {
                     tvTiempo.setText(s);
                 }
             }
@@ -119,7 +117,6 @@ implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener
     }
 
 
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -146,7 +143,6 @@ implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener
     }
 
 
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -166,25 +162,24 @@ implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener
         super.onDestroy();
     }
 
-    public static void actualizarTiempo(int tiempo) {
-        tiempoActual = tiempo;
-    }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bt_play:
+                intentPomodoro = new Intent(
+                        getApplicationContext(), Countdown.class);
 
-                    intentPomodoro = new Intent(
-                            getApplicationContext(), Countdown.class);
-                    intentPomodoro.putExtra(TIPO, TIPO_ACTUAL);
-                if(tiempoActual != 0) {
-                    Log.e("tiempoActual",""+tiempoActual);
+                intentPomodoro.putExtra(TIPO, TIPO_ACTUAL);
+                if (tiempoActual != 0) {
+                    Log.e("tiempoActual", "" + tiempoActual);
                     intentPomodoro.putExtra(TIEMPO, tiempoActual);
-                }else{
+                } else {
+                    Log.e("tiempoActual", "" + tiempo);
                     intentPomodoro.putExtra(TIEMPO, tiempo);
                 }
-                    startService(intentPomodoro);
+
+                startService(intentPomodoro);
 
                 break;
             case R.id.bt_stop:
