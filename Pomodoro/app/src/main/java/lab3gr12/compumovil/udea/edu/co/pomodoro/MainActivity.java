@@ -32,7 +32,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
-
+    Preferencia preferencia;
     public static String TIEMPO = "tiempo";
     public static String TIPO = "tipo";
     public static int TIPO_DESCANSO = 0;
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        preferencia = PreferenciaDataManager.getInstance(this).obtenerPreferencia();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

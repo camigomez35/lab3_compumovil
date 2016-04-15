@@ -111,11 +111,7 @@ public class Countdown extends Service {
     @Override
     public void onDestroy() {
         timerTask.cancel();
-        Intent localIntent = new Intent(Constants.ACTION_MEMORY_EXIT);
 
-        // Emitir el intent a la actividad
-        LocalBroadcastManager.
-                getInstance(Countdown.this).sendBroadcast(localIntent);
         Log.d(TAG, "Servicio destruido...");
     }
 
