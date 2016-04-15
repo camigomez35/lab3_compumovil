@@ -12,8 +12,170 @@
     tools:context="lab3gr12.compumovil.udea.edu.co.pomodoro.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-    <TextView
-        android:layout_width="wrap_content"
+
+
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:id="@+id/scrollView" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+
+                android:background="@color/colorPrimary"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:id="@+id/funciones">
+                <TextView
+                    android:id="@+id/tv_tiempo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="00:00:00"
+                    android:textSize="35dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentStart="true" />
+
+                <Button
+                    style="@style/Base.Widget.AppCompat.CompoundButton.RadioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@android:drawable/ic_media_play"
+                    android:drawableStart="@android:drawable/ic_media_play"
+                    android:id="@+id/bt_play"
+                    android:layout_alignTop="@+id/tv_tiempo"
+                    android:layout_toEndOf="@+id/tv_tiempo" />
+
+                <Button
+                    style="@style/Base.Widget.AppCompat.CompoundButton.RadioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@android:drawable/ic_media_pause"
+                    android:drawableStart="@android:drawable/ic_media_pause"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:id="@+id/bt_stop" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/funciones"
+                android:text="Configuración"
+                android:textSize="30dp"
+                android:layout_margin="10dp"/>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="Volumen"
+                android:textSize="30dp"
+                android:layout_margin="10dp"/>
+
+            <SeekBar
+
+                android:id="@+id/seekBar"
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/textView2"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:max="10"
+                android:layout_margin="10dp"/>
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/textView2"
+                android:layout_below="@+id/seekBar"
+                android:text="Vibración"
+                android:textSize="30dp"
+                android:layout_margin="10dp" />
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/seekBar"
+                android:layout_marginLeft="10dp"
+                android:layout_toEndOf="@+id/textView3"
+                android:layout_margin="10dp"/>
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tiempo descanso"
+                android:textSize="30dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_below="@+id/checkBox"
+                android:layout_centerHorizontal="true" />
+
+            <SeekBar
+                android:id="@+id/seekBarDescanso"
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+
+                android:max="6"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_below="@+id/textView4"
+                android:layout_alignStart="@+id/seekBarTrabajo" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/textView4"
+                android:layout_below="@+id/seekBarDescanso"
+                android:text="Tiempo descanso"
+                android:textSize="30dp"
+                android:layout_margin="10dp"/>
+
+            <SeekBar
+                android:id="@+id/seekBarTrabajo"
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/textView5"
+                android:layout_centerHorizontal="true"
+                android:max="10"
+                android:layout_margin="10dp"/>
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/seekBarTrabajo"
+                android:layout_centerHorizontal="true"
+                android:text="Debug"
+                android:textSize="30dp"
+                android:layout_margin="10dp"/>
+
+            <CheckBox
+                android:id="@+id/checkBox2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/textView6"
+                android:layout_alignStart="@+id/checkBox"
+                android:layout_margin="10dp"/>
+
+
+        </RelativeLayout>
+    </ScrollView>
+
 </RelativeLayout>

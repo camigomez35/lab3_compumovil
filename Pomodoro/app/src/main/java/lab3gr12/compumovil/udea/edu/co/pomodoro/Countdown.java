@@ -6,6 +6,8 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
+import android.os.Binder;
+import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.IBinder;
 import android.provider.SyncStateContract;
@@ -21,9 +23,13 @@ public class Countdown extends Service {
 
     private static final String TAG = "tag";
     CountDownTimer timerTask;
+    LocalBroadcastManager broadcaster;
+
+    long actual;
 
     public Countdown() {
     }
+
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -33,15 +39,17 @@ public class Countdown extends Service {
 
     @Override
     public void onCreate() {
+       broadcaster = LocalBroadcastManager.getInstance(this);
         Log.d(TAG, "Servicio creado...");
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d(TAG, "Servicio iniciado...");
+        Bundle bundle = intent.getExtras();
+        int tiempo = bundle.getInt(MainActivity.TIEMPO);
 
-
-        timerTask = new CountDownTimer(30000,1000) {
+        timerTask = new CountDownTimer(tiempo,1000) {
             Intent intentMain = new Intent(getApplicationContext(), MainActivity.class);
             PendingIntent pIntent = PendingIntent.getActivity(getApplicationContext(), 0, intentMain, 0);
             Notification notificacion = new Notification.Builder(getApplicationContext())
@@ -54,7 +62,13 @@ public class Countdown extends Service {
                             .setContentTitle("Contando")
                             .setContentText("millisUntilFinished: "+millisUntilFinished).setSmallIcon(R.mipmap.ic_launcher)
                             .setContentIntent(pIntent).build();
-                startForeground(1,notificacion);
+                actual = millisUntilFinished;
+                startForeground(1, notificacion);
+
+                Intent intent = new Intent(MainActivity.TIEMPO);
+                intent.putExtra(MainActivity.TIEMPO, millisUntilFinished);
+                intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
+                broadcaster.sendBroadcast(intent);
             }
 
             @Override
@@ -67,7 +81,7 @@ public class Countdown extends Service {
                         .setContentIntent(pIntent).build();
                 NotificationManager notificationManager =
                         (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
-//Se esconde la notificación tras ser seleccionada
+                //Se esconde la notificación tras ser seleccionada
                 noti.flags |= Notification.FLAG_AUTO_CANCEL;
                 notificationManager.notify(0, noti);
 
