@@ -59,8 +59,8 @@ public class PreferenciasVista extends Activity implements View.OnClickListener{
                     preferencia.setDebug(0);
                 }
                 preferencia.setVolumen(volumen.getProgress());
-                preferencia.setTiempoCorto(tiempoCorto.getProgress());
-                preferencia.setTiempoLargo(tiempoLargo.getProgress());
+                preferencia.setTiempoCorto(tiempoCorto.getProgress() + 5);
+                preferencia.setTiempoLargo(tiempoLargo.getProgress() + 10);
                 PreferenciaDataManager.getInstance(this).actualizarPreferencia(preferencia);
                 Intent i = new Intent(this, MainActivity.class);
                 startActivity(i);

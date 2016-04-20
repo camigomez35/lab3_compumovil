@@ -10,6 +10,10 @@ public class Preferencia {
     int tiempoLargo,tiempoCorto;
     int debug;
 
+    public Preferencia() {
+        id = 1;
+    }
+
     public int getId() {
         return id;
     }

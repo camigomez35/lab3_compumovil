@@ -60,7 +60,7 @@ public class PreferenciaDataManager extends DataManager {
     }
 
 
-    private Preferencia getAlarmaFromCursor(Cursor cursor) {
+    private Preferencia getPreferenciaFromCursor(Cursor cursor) {
         Preferencia alarma = new Preferencia();
         alarma.setId(cursor.getInt(COL_ID));
         alarma.setVolumen(cursor.getInt(COL_VOLUMEN));
@@ -89,11 +89,22 @@ public class PreferenciaDataManager extends DataManager {
         SQLiteDatabase db = helper.getReadableDatabase();
         Cursor cursor = db.query(TABLE_NAME, COLUMNS, null,null, null, null, null);
         if (cursor.moveToFirst()) {
-            alarma = getAlarmaFromCursor(cursor);
+            alarma = getPreferenciaFromCursor(cursor);
         }
         db.close();
         cursor.close();
         helper.close();
         return alarma;
+    }
+    public Preferencia getPreferenciaById(int id) {
+        SQLiteDatabase db = helper.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_NAME, COLUMNS,
+                "id = ?", new String[]{String.valueOf(id)}, null, null, COLUMNS[COL_ID]);
+        if (cursor.moveToNext()) {
+            return getPreferenciaFromCursor(cursor);
+        }
+        cursor.close();
+        helper.close();
+        return null;
     }
 }
