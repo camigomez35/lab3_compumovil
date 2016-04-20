@@ -31,7 +31,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+        implements View.OnClickListener {
     Preferencia preferencia;
     public static String TIEMPO = "tiempo";
     public static String TIPO = "tipo";
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity
     public static int TIPO_ACTUAL = TIPO_TRABAJO;
     public static long tiempoActual = 0;
     private Intent intentPomodoro;
-    long tiempo = 30000;
+    long tiempo = 25*60*1000;
     public BroadcastReceiver receiver;
     private TextView tvTiempo;
     private SeekBar sbVolumen, sbDescanso, sbTrabajo;
@@ -54,14 +54,6 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
 
         btPlay = (Button) findViewById(R.id.bt_play);
         btPause = (Button) findViewById(R.id.bt_stop);
@@ -76,6 +68,14 @@ public class MainActivity extends AppCompatActivity
                 Bundle bunble = intent.getExtras();
                 tiempoActual = bunble.getLong(MainActivity.TIEMPO);
                 String s = Utilities.milliToString(bunble.getLong(MainActivity.TIEMPO));
+                String[] t = s.split(":");
+                if (Integer.parseInt(t[1]) < 10) {
+                    t[1] = "0" + t[1];
+                }
+                if (Integer.parseInt(t[2]) < 10) {
+                    t[2] = "0" + t[2];
+                }
+                s = t[1] + ":" + t[2];
                 if (tvTiempo != null) {
                     tvTiempo.setText(s);
                 }
@@ -85,12 +85,8 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+
+        super.onBackPressed();
     }
 
     @Override
@@ -118,32 +114,6 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
-
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -168,6 +138,8 @@ public class MainActivity extends AppCompatActivity
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bt_play:
+                btPlay.setVisibility(View.GONE);
+                btPause.setVisibility(View.VISIBLE);
                 intentPomodoro = new Intent(
                         getApplicationContext(), Countdown.class);
 
@@ -184,6 +156,8 @@ public class MainActivity extends AppCompatActivity
 
                 break;
             case R.id.bt_stop:
+                btPause.setVisibility(View.GONE);
+                btPlay.setVisibility(View.VISIBLE);
                 Intent intentStop = new Intent(
                         getApplicationContext(), Countdown.class);
                 stopService(intentStop);

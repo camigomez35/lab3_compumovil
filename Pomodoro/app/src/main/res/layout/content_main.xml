@@ -19,46 +19,91 @@
         android:layout_height="wrap_content"
         android:id="@+id/scrollView" >
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-
-            android:background="@color/colorPrimary"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:id="@+id/funciones">
-            <TextView
-                android:id="@+id/tv_tiempo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="00:00:00"
-                android:textSize="35dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_centerVertical="true"
-                android:layout_alignParentStart="true" />
-
-            <Button
-                style="@style/Base.Widget.AppCompat.CompoundButton.RadioButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@android:drawable/ic_media_play"
-                android:drawableStart="@android:drawable/ic_media_play"
-                android:id="@+id/bt_play"
-                android:layout_alignTop="@+id/tv_tiempo"
-                android:layout_toEndOf="@+id/tv_tiempo" />
-
-            <Button
-                style="@style/Base.Widget.AppCompat.CompoundButton.RadioButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@android:drawable/ic_media_pause"
-                android:drawableStart="@android:drawable/ic_media_pause"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:id="@+id/bt_stop" />
-        </RelativeLayout>
     </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+
+        android:background="@color/colorPrimary"
+        android:id="@+id/funciones"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true">
+        <TextView
+            android:id="@+id/tv_tiempo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00:00:00"
+            android:textSize="35dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            style="@style/Base.Widget.AppCompat.CompoundButton.RadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@android:drawable/ic_media_play"
+            android:drawableStart="@android:drawable/ic_media_play"
+            android:id="@+id/bt_play"
+            android:layout_alignTop="@+id/tv_tiempo"
+            android:layout_alignParentEnd="true" />
+
+        <Button
+            style="@style/Base.Widget.AppCompat.CompoundButton.RadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@android:drawable/ic_media_pause"
+            android:drawableStart="@android:drawable/ic_media_pause"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/bt_stop"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pomodoro"
+        android:id="@+id/textView5"
+        android:layout_marginBottom="47dp"
+        android:textSize="50dp"
+        android:layout_above="@+id/funciones"
+        android:layout_centerHorizontal="true" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/funciones"
+        android:layout_alignParentStart="true"
+        android:gravity="center_horizontal">
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/pomodoro1"
+            android:clickable="false" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/pomodoro2"
+            android:clickable="false"/>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/pomodoro3"
+            android:clickable="false"/>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/pomodoro4"
+            android:clickable="false"/>
+    </LinearLayout>
 
 </RelativeLayout>
