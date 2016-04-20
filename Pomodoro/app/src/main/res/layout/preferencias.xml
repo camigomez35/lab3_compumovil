@@ -1,142 +1,175 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="lab3gr12.compumovil.udea.edu.co.pomodoro.MainActivity">
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/scrollView" >
+        android:layout_height="match_parent">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="41dp"
+                android:text="Configuración"
+                android:textSize="30dp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView"
+                android:layout_centerHorizontal="true"
+                android:text="Volumen"
+                android:textAlignment="center"
+                android:textSize="20dp" />
+
+            <SeekBar
+                android:id="@+id/volumen"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/txVolumen"
+                android:layout_marginTop="41dp"
+                android:max="100" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/textView"
+                android:layout_below="@+id/volumen"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="Vibración"
+                android:textSize="20dp" />
+
+            <CheckBox
+                android:id="@+id/vibracion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/textView"
+                android:layout_below="@+id/volumen"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/textView3"
+                android:layout_marginTop="38dp"
+                android:text="Tiempo descanso largo"
+                android:textAlignment="center"
+                android:textSize="20dp" />
+
+            <SeekBar
+                android:id="@+id/tiempoLargo"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/textView4"
+                android:layout_centerHorizontal="true"
+                android:max="10" />
+
+            <TextView
+                android:id="@+id/tiempoCortotx"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/textView4"
+                android:layout_below="@+id/tiempoLargo"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="Tiempo descanso corto"
+                android:textAlignment="center"
+                android:textSize="20dp" />
+
+            <SeekBar
+                android:id="@+id/tiempoCorto"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_alignStart="@+id/tiempoLargo"
+                android:layout_below="@+id/tiempoCortotx"
+                android:max="5" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/textView"
+                android:layout_alignTop="@+id/debug"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="Debug"
+                android:textSize="30dp" />
+
+            <CheckBox
+                android:id="@+id/debug"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/textView"
+                android:layout_below="@+id/tiempoCorto"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
+
+            <TextView
+                android:id="@+id/txVolumen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView2"
+                android:layout_centerHorizontal="true"
+                android:textAlignment="center"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txDescansoLargo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView4"
+                android:layout_centerHorizontal="true"
+                android:textAlignment="center"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txDescansoCorto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tiempoCortotx"
+                android:layout_centerHorizontal="true"
+                android:textAlignment="center"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
     </ScrollView>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/funciones"
-            android:text="Configuración"
-            android:textSize="30dp"
-            android:layout_margin="10dp"/>
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:text="Volumen"
-            android:textSize="20dp"
-            android:layout_margin="10dp"/>
-
-        <SeekBar
-
-            android:id="@+id/volumen"
-            android:layout_width="300dp"
-            android:layout_height="40dp"
-            android:layout_below="@+id/textView2"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:max="100"
-            android:layout_margin="10dp"/>
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Vibración"
-            android:textSize="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_below="@+id/volumen"
-            android:layout_alignEnd="@+id/textView2" />
-
-        <CheckBox
-            android:id="@+id/vibracion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_alignTop="@+id/textView3"
-            android:layout_alignEnd="@+id/textView" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tiempo descanso largo"
-            android:textSize="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_below="@+id/vibracion"
-            android:layout_centerHorizontal="true" />
-
-        <SeekBar
-            android:id="@+id/tiempoLargo"
-            android:layout_width="300dp"
-            android:layout_height="40dp"
-            android:max="10"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_below="@+id/textView4"
-            android:layout_centerHorizontal="true" />
-
-        <TextView
-            android:id="@+id/tiempoCortotx"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/textView4"
-            android:layout_below="@+id/tiempoLargo"
-            android:text="Tiempo descanso corto"
-            android:textSize="20dp"
-            android:layout_margin="10dp"/>
-
-        <SeekBar
-            android:id="@+id/tiempoCorto"
-            android:layout_width="300dp"
-            android:layout_height="40dp"
-            android:layout_below="@+id/tiempoCortotx"
-            android:layout_centerHorizontal="true"
-            android:max="5"
-            android:layout_margin="10dp"/>
-
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Debug"
-            android:textSize="30dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_alignBottom="@+id/debug"
-            android:layout_alignEnd="@+id/textView3" />
-
-        <CheckBox
-            android:id="@+id/debug"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_below="@+id/tiempoCorto"
-            android:layout_alignStart="@+id/vibracion" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Guardar"
-            android:id="@+id/guardar"
-            android:layout_below="@+id/debug"
-            android:layout_centerHorizontal="true" />
-
-    </RelativeLayout>
+    <Button
+        android:id="@+id/guardar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Guardar"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>
