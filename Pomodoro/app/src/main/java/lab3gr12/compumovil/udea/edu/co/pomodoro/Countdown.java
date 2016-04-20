@@ -27,6 +27,7 @@ public class Countdown extends Service {
     private static final String TAG = "tag";
     CountDownTimer timerTask;
     LocalBroadcastManager broadcaster;
+    Preferencia preferencia;
 
     long actual;
 
@@ -77,21 +78,27 @@ public class Countdown extends Service {
 
             @Override
             public void onFinish() {
+                preferencia = PreferenciaDataManager.getInstance(Pomodoro.getContext()).obtenerPreferencia();
                 Intent intentFin = new Intent(MainActivity.TIEMPO);
                 intentFin.putExtra(MainActivity.TIEMPO, 0);
                 broadcaster.sendBroadcast(intentFin);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.putExtra(MainActivity.TIEMPO, 0);
+                Uri uri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
                 PendingIntent pIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
                 Notification noti = new Notification.Builder(getApplicationContext())
-                        .setContentTitle("Terminado")
-                        .setContentText("Asunto_notificación").setSmallIcon(R.mipmap.ic_launcher)
+                        .setContentTitle("Intevalo terminado")
+                        .setContentText("fin").setSmallIcon(R.mipmap.ic_launcher)
                         .setContentIntent(pIntent)
-                        .setDefaults(Notification.DEFAULT_SOUND)
                         .setLights(Color.RED, 3000, 3000)
                         .setVibrate(new long[]{1000, 1000, 1000, 1000, 1000})
+                        .setSound(uri)
                         .build();
+                if (preferencia.getVibracion() == 0){
+                noti.vibrate = null;
+                }
 
+                noti.sound = uri;
                 NotificationManager notificationManager =
                         (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
                 //Se esconde la notificación tras ser seleccionada
